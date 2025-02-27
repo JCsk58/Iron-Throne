@@ -1,0 +1,111 @@
+/* ==================== */
+/* Estilos generales */
+/* ==================== */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000; /* Fondo negro */
+    color: #ffcc00; /* Letras amarillas */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* ==================== */
+/* Contenedor principal */
+/* ==================== */
+.container {
+    background-color: #1a1a1a; /* Fondo gris oscuro */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.5); /* Sombra amarilla */
+    width: 300px;
+    text-align: center;
+    border: 2px solid #ffcc00; /* Borde amarillo */
+}
+
+h2 {
+    color: inherit; /* Hereda el color amarillo */
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+/* ==================== */
+/* Elementos del formulario */
+/* ==================== */
+input, select, button {
+    width: 100%; /* Ancho completo */
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ffcc00; /* Borde amarillo */
+    border-radius: 5px;
+    background-color: #333; /* Fondo gris oscuro */
+    color: inherit; /* Hereda el color amarillo */
+    font-size: 16px;
+}
+
+button {
+    background-color: #ffcc00; /* Fondo amarillo */
+    color: #000; /* Letras negras */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #e6b800; /* Amarillo más oscuro al pasar el mouse */
+}
+
+/* ==================== */
+/* Sección de movimientos */
+/* ==================== */
+#balance {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+#movimientos {
+    margin-top: 20px;
+    text-align: left;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ffcc00; /* Borde amarillo */
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #333; /* Fondo gris oscuro */
+}
+
+.movimiento {
+    margin: 5px 0;
+    padding: 5px;
+    border-bottom: 1px solid #ffcc00; /* Borde amarillo */
+}
+
+.movimiento:last-child {
+    border-bottom: none;
+}
+
+/* ==================== */
+/* Símbolo libertario */
+/* ==================== */
+.libertarian-symbol {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.libertarian-symbol::before {
+    content: "🐍"; /* Símbolo de la serpiente */
+    display: block;
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.libertarian-symbol::after {
+    content: "Don't Tread on Me";
+    display: block;
+    font-size: 14px;
+    color: inherit; /* Hereda el color amarillo */
+    margin-top: 5px;
+}
