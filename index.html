@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de Gastos e Ingresos</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="serpiente.ico" type="image/x-icon"> <!-- Icono de la aplicación -->
+</head>
+<body>
+    <main class="container">
+        <div class="libertarian-symbol" aria-hidden="true"></div>
+        <h2>Control de Gastos e Ingresos</h2>
+
+        <!-- Sección principal -->
+        <section id="mainSection">
+            <form onsubmit="event.preventDefault(); agregarMovimiento();">
+                <input type="number" id="cantidad" placeholder="Cantidad" required>
+                <select id="tipo" required>
+                    <option value="" disabled selected>Seleccione tipo</option>
+                    <option value="ingreso">Ingreso</option>
+                    <option value="gasto">Gasto</option>
+                </select>
+                <button type="submit">Agregar</button>
+            </form>
+            <h3>Balance: <span id="balance">0</span> €</h3>
+            <div id="movimientos"></div>
+        </section>
+    </main>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
