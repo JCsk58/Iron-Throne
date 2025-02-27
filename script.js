@@ -35,27 +35,50 @@ function agregarMovimiento() {
     limpiarCampoCantidad();
 }
 
+// Eliminar un movimiento
+function eliminarMovimiento(index) {
+    movimientos.splice(index, 1);
+    actualizarBalance();
+    guardarDatos();
+    actualizarInterfaz();
+}
+
 // Actualizar el balance
 function actualizarBalance() {
     balance = movimientos.reduce((total, mov) => total + (mov.tipo === 'ingreso' ? mov.cantidad : -mov.cantidad), 0);
-    if (document.getElementById('balance')) {
-        document.getElementById('balance').textContent = balance.toFixed(2);
-    }
+    document.getElementById('balance').textContent = balance.toFixed(2);
 }
 
-// Actualizar el historial
-function actualizarHistorial() {
+// Actualizar la interfaz
+function actualizarInterfaz() {
     const movimientosDiv = document.getElementById('movimientos');
     if (movimientosDiv) {
         movimientosDiv.innerHTML = '';
 
-        movimientos.forEach((mov) => {
+        movimientos.forEach((mov, index) => {
             const movimientoDiv = document.createElement('div');
             movimientoDiv.className = 'movimiento';
-            movimientoDiv.textContent = `${mov.fechaHora} - ${mov.tipo === 'ingreso' ? '+' : '-'}${mov.cantidad.toFixed(2)} € (${mov.tipo})`;
+
+            const textoMovimiento = document.createElement('span');
+            textoMovimiento.textContent = `${mov.tipo === 'ingreso' ? '+' : '-'}${mov.cantidad.toFixed(2)} € - ${mov.fechaHora}`;
+
+            const botonEliminar = document.createElement('button');
+            botonEliminar.textContent = 'Eliminar';
+            botonEliminar.onclick = () => eliminarMovimiento(index);
+
+            movimientoDiv.appendChild(textoMovimiento);
+            movimientoDiv.appendChild(botonEliminar);
             movimientosDiv.appendChild(movimientoDiv);
         });
     }
+}
+
+// Limpiar el historial
+function limpiarHistorial() {
+    movimientos = []; // Vacía el array de movimientos
+    localStorage.removeItem('movimientos'); // Elimina los datos del localStorage
+    actualizarBalance(); // Actualiza el balance a 0
+    actualizarInterfaz(); // Limpia la interfaz de movimientos
 }
 
 // Funciones auxiliares
@@ -70,6 +93,9 @@ function validarCantidad(cantidad) {
 function limpiarCampoCantidad() {
     document.getElementById('cantidad').value = '';
 }
+
+// Asignar la función al botón de limpiar historial
+document.getElementById('limpiarHistorial').addEventListener('click', limpiarHistorial);
 
 // Cargar datos al iniciar la página
 cargarDatos();
