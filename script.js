@@ -7,7 +7,9 @@ function cargarDatos() {
     if (datosGuardados) {
         movimientos = JSON.parse(datosGuardados);
         actualizarBalance();
-        actualizarInterfaz();
+        if (window.location.pathname.endsWith('historial.html')) {
+            actualizarHistorial();
+        }
     }
 }
 
@@ -30,44 +32,30 @@ function agregarMovimiento() {
     movimientos.push(movimiento);
     actualizarBalance();
     guardarDatos();
-    actualizarInterfaz();
     limpiarCampoCantidad();
-}
-
-// Eliminar un movimiento
-function eliminarMovimiento(index) {
-    movimientos.splice(index, 1);
-    actualizarBalance();
-    guardarDatos();
-    actualizarInterfaz();
 }
 
 // Actualizar el balance
 function actualizarBalance() {
     balance = movimientos.reduce((total, mov) => total + (mov.tipo === 'ingreso' ? mov.cantidad : -mov.cantidad), 0);
-    document.getElementById('balance').textContent = balance.toFixed(2);
+    if (document.getElementById('balance')) {
+        document.getElementById('balance').textContent = balance.toFixed(2);
+    }
 }
 
-// Actualizar la interfaz
-function actualizarInterfaz() {
+// Actualizar el historial
+function actualizarHistorial() {
     const movimientosDiv = document.getElementById('movimientos');
-    movimientosDiv.innerHTML = '';
+    if (movimientosDiv) {
+        movimientosDiv.innerHTML = '';
 
-    movimientos.forEach((mov, index) => {
-        const movimientoDiv = document.createElement('div');
-        movimientoDiv.className = 'movimiento';
-
-        const textoMovimiento = document.createElement('span');
-        textoMovimiento.textContent = `${mov.tipo === 'ingreso' ? '+' : '-'}${mov.cantidad.toFixed(2)} € - ${mov.fechaHora}`;
-
-        const botonEliminar = document.createElement('button');
-        botonEliminar.textContent = 'Eliminar';
-        botonEliminar.onclick = () => eliminarMovimiento(index);
-
-        movimientoDiv.appendChild(textoMovimiento);
-        movimientoDiv.appendChild(botonEliminar);
-        movimientosDiv.prepend(movimientoDiv);
-    });
+        movimientos.forEach((mov) => {
+            const movimientoDiv = document.createElement('div');
+            movimientoDiv.className = 'movimiento';
+            movimientoDiv.textContent = `${mov.fechaHora} - ${mov.tipo === 'ingreso' ? '+' : '-'}${mov.cantidad.toFixed(2)} € (${mov.tipo})`;
+            movimientosDiv.appendChild(movimientoDiv);
+        });
+    }
 }
 
 // Funciones auxiliares

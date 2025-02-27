@@ -109,3 +109,20 @@ button:hover {
     color: inherit; /* Hereda el color amarillo */
     margin-top: 5px;
 }
+
+/* ==================== */
+/* Ajuste específico para el campo de cantidad */
+/* ==================== */
+input[type="number"] {
+    width: 50%; /* Reduce el ancho al 50% del contenedor */
+    max-width: 200px; /* Establece un ancho máximo */
+    display: block; /* Hace que el campo sea un bloque */
+    margin: 10px auto; /* Centra el campo horizontalmente */
+}
+
+/* Opcional: Estilos adicionales para mejorar la apariencia */
+input[type="number"]:focus {
+    outline: none; /* Elimina el borde predeterminado al enfocar */
+    border-color: #e6b800; /* Cambia el color del borde al enfocar */
+    box-shadow: 0 0 5px rgba(255, 204, 0, 0.5); /* Agrega una sombra al enfocar */
+}
