@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>León Fitness</title>
+    <link rel="icon" type="image/x-icon" href="leon.ico">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Logo y título -->
+        <div class="lion-symbol">
+            <span class="lion-icon">🦁</span>
+            <h1>León Fitness</h1>
+            <p>Registra tus calorías quemadas</p>
+        </div>
+
+        <!-- Formulario de registro -->
+        <form id="registroForm">
+            <label for="ejercicio">Tipo de ejercicio:</label>
+            <select id="ejercicio" name="ejercicio">
+                <option value="eliptica">Elíptica</option>
+                <option value="correr">Correr</option>
+                <option value="andar">Andar</option>
+            </select>
+
+            <label for="calorias">Calorías quemadas:</label>
+            <input type="number" id="calorias" name="calorias" required>
+
+            <button type="submit">Registrar</button>
+        </form>
+
+        <!-- Balance de calorías -->
+        <div id="balance">
+            <p>Calorías restantes hoy: <span id="caloriasRestantes">2000</span> K</p>
+        </div>
+
+        <!-- Historial de sesiones -->
+        <div id="movimientos">
+            <h2>Historial de hoy</h2>
+            <div id="listaMovimientos">
+                <!-- Las sesiones registradas aparecerán aquí -->
+            </div>
+        </div>
+
+        <!-- Botones adicionales -->
+        <div class="botones">
+            <button id="limpiarHistorial">Limpiar historial</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
