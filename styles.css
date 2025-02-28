@@ -111,21 +111,37 @@ button:hover {
 }
 
 /* ==================== */
-/* Estilos para el botón de limpiar historial */
+/* Ajuste específico para el campo de cantidad */
 /* ==================== */
-#limpiarHistorial {
-    background-color: #ff3333; /* Fondo rojo */
-    color: #000; /* Texto negro */
-    border: 1px solid #ff3333; /* Borde rojo */
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px 0;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+input[type="number"] {
+    width: 50%; /* Reduce el ancho al 50% del contenedor */
+    max-width: 200px; /* Establece un ancho máximo */
+    display: block; /* Hace que el campo sea un bloque */
+    margin: 10px auto; /* Centra el campo horizontalmente */
 }
 
-#limpiarHistorial:hover {
-    background-color: #cc0000; /* Rojo más oscuro al pasar el mouse */
-    border-color: #cc0000;
+/* ==================== */
+/* Media queries para dispositivos móviles */
+/* ==================== */
+@media (max-width: 600px) {
+    input[type="number"] {
+        width: 80%; /* Aumenta el ancho en dispositivos móviles */
+        max-width: none; /* Elimina el ancho máximo */
+        font-size: 14px; /* Reduce el tamaño de la fuente */
+        padding: 8px; /* Ajusta el padding */
+    }
+
+    .container {
+        width: 90%; /* Ajusta el ancho del contenedor principal */
+        padding: 15px; /* Reduce el padding */
+    }
+
+    h2 {
+        font-size: 20px; /* Reduce el tamaño del título */
+    }
+
+    button {
+        font-size: 14px; /* Reduce el tamaño de la fuente en los botones */
+        padding: 8px; /* Ajusta el padding */
+    }
 }
