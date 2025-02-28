@@ -3,38 +3,54 @@ let historial = [];
 
 document.getElementById('registroForm').addEventListener('submit', function(event) {
     event.preventDefault();
-    const ejercicio = document.getElementById('ejercicio').value;
-    const calorias = parseInt(document.getElementById('calorias').value);
+    
+    const registro = {
+        ejercicio: document.getElementById('ejercicio').value,
+        km: parseFloat(document.getElementById('km').value),
+        tiempo: parseInt(document.getElementById('tiempo').value),
+        calorias: parseInt(document.getElementById('calorias').value)
+    };
 
-    // Restar calorías del total
-    caloriasRestantes -= calorias;
-    if (caloriasRestantes < 0) {
-        caloriasRestantes = 0;
-    }
-
-    // Guardar sesión en el historial
-    historial.push({ ejercicio, calorias });
-
-    // Actualizar la interfaz
+    caloriasRestantes -= registro.calorias;
+    if(caloriasRestantes < 0) caloriasRestantes = 0;
+    
+    historial.push(registro);
     actualizarInterfaz();
-});
-
-document.getElementById('limpiarHistorial').addEventListener('click', function() {
-    historial = [];
-    caloriasRestantes = 2000;
-    actualizarInterfaz();
+    document.getElementById('registroForm').reset();
 });
 
 function actualizarInterfaz() {
-    // Actualizar calorías restantes
     document.getElementById('caloriasRestantes').textContent = caloriasRestantes;
-
-    // Actualizar historial
-    const listaMovimientos = document.getElementById('listaMovimientos');
-    listaMovimientos.innerHTML = historial.map(sesion => `
+    
+    const listaCompleta = document.getElementById('listaCompleta');
+    listaCompleta.innerHTML = historial.map((sesion, index) => `
         <div class="movimiento">
-            <span>${sesion.ejercicio}</span>
+            <span>${sesion.ejercicio.toUpperCase()}</span>
+            <span>${sesion.tiempo} min</span>
             <span>${sesion.calorias} K</span>
+            <span>${sesion.km.toFixed(1)} km</span>
+            <button class="borrar-btn" onclick="borrarRegistro(${index})">🗑️</button>
         </div>
     `).join('');
+}
+
+function borrarRegistro(index) {
+    caloriasRestantes += historial[index].calorias;
+    historial.splice(index, 1);
+    actualizarInterfaz();
+}
+
+// Control de ventana modal
+document.getElementById('mostrarDatos').addEventListener('click', () => {
+    document.getElementById('ventanaDatos').style.display = "block";
+});
+
+document.querySelector('.cerrar').addEventListener('click', () => {
+    document.getElementById('ventanaDatos').style.display = "none";
+});
+
+window.onclick = function(event) {
+    if(event.target == document.getElementById('ventanaDatos')) {
+        document.getElementById('ventanaDatos').style.display = "none";
+    }
 }
