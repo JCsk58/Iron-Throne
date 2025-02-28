@@ -3,53 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>León Fitness</title>
-    <link rel="icon" type="image/x-icon" href="leon.ico">
+    <title>Control de Gastos e Ingresos</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="serpiente.ico" type="image/x-icon">
 </head>
 <body>
-    <div class="container">
-        <!-- Logo y título -->
-        <div class="lion-symbol">
-            <span class="lion-icon">🦁</span>
-            <h1>León Fitness</h1>
-            <p>Registra tus calorías quemadas</p>
-        </div>
+    <main class="container">
+        <div class="libertarian-symbol" aria-hidden="true"></div>
+        <h2>Control de Gastos e Ingresos</h2>
 
-        <!-- Formulario de registro -->
-        <form id="registroForm">
-            <label for="ejercicio">Tipo de ejercicio:</label>
-            <select id="ejercicio" name="ejercicio">
-                <option value="eliptica">Elíptica</option>
-                <option value="correr">Correr</option>
-                <option value="andar">Andar</option>
+        <!-- Formulario -->
+        <form id="movimientoForm" onsubmit="event.preventDefault(); agregarMovimiento();">
+            <input type="number" id="cantidad" placeholder="Cantidad" required>
+            <select id="tipo" required>
+                <option value="" disabled selected>Seleccione tipo</option>
+                <option value="ingreso">Ingreso</option>
+                <option value="gasto">Gasto</option>
             </select>
-
-            <label for="calorias">Calorías quemadas:</label>
-            <input type="number" id="calorias" name="calorias" required>
-
-            <button type="submit">Registrar</button>
+            <button type="submit">Guardar</button>
         </form>
 
-        <!-- Balance de calorías -->
-        <div id="balance">
-            <p>Calorías restantes hoy: <span id="caloriasRestantes">2000</span> K</p>
-        </div>
+        <!-- Balance -->
+        <h3>Balance: <span id="balance">0</span> €</h3>
 
-        <!-- Historial de sesiones -->
-        <div id="movimientos">
-            <h2>Historial de hoy</h2>
-            <div id="listaMovimientos">
-                <!-- Las sesiones registradas aparecerán aquí -->
-            </div>
-        </div>
+        <!-- Movimientos recientes -->
+        <div id="movimientos"></div>
 
-        <!-- Botones adicionales -->
+        <!-- Botones -->
         <div class="botones">
-            <button id="limpiarHistorial">Limpiar historial</button>
+            <button onclick="window.location.href='historial.html'">Historial</button>
+            <button id="limpiarHistorial">Limpiar Historial</button>
         </div>
-    </div>
+    </main>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
